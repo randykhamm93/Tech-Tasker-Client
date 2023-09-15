@@ -32,6 +32,7 @@ export const NavBar = ({ token, setToken }) => {
                             ? (
                                 <>
                                     <Link to="/work_orders" className="navbar-item">Work Orders</Link>
+                                    <Link to="/employees" className="navbar-item">Employees</Link>
 
                                 </>
 
@@ -47,7 +48,8 @@ export const NavBar = ({ token, setToken }) => {
                                     ?
                                     <button className="button is-outlined" onClick={() => {
                                         // Clear localStorage upon logout
-                                        localStorage.removeItem("userProfileId");
+                                        localStorage.removeItem("userEmployeeId");
+                                        localStorage.removeItem("is_supervisor");
 
                                         // Clear the token and navigate to the login page
                                         setToken('')

@@ -5,21 +5,39 @@ import { Register } from "../components/auth/Register";
 import { Authorized } from "./Authorized";
 import { WorkOrderList } from "../components/work_orders/WorkOrderList";
 import { WorkOrderDetails } from "../components/work_orders/WorkOrderDetails";
+import { EditWorkOrderForm } from "../components/work_orders/EditWorkOrderForm";
+import { CreateWorkOrderForm } from "../components/work_orders/CreateWorkOrderForm";
+import { EmployeeList } from "../components/employees/EmployeeList";
 
 
-export const ApplicationViews = ({ token, setToken }) => {
-    return (
+export const ApplicationViews = ({ token, setToken, isSupervisor }) => {
+  return (
     <Routes>
       <Route path="/login" element={<Login setToken={setToken} />} />
       <Route path="/register" element={<Register setToken={setToken} />} />
       <Route element={<Authorized token={token} />} />
 
-      <Route path="/work_orders">
-        <Route index element={<WorkOrderList setToken={setToken} />} />
-        <Route path="/work_orders/:workOrderId" element={<WorkOrderDetails setToken={setToken} isSupervisor={localStorage.getItem("is_supervisor") === "true"}/>} />
+
+      <Route path="/employees" element={<EmployeeList setToken={setToken} />} />
+
+      <Route
+        path="/work_orders"
+        element={<Authorized token={token} />}
+      >
+        <Route index element={<WorkOrderList setToken={setToken} isSupervisor={isSupervisor} />} />
+        <Route
+          path="/work_orders/:workOrderId"
+          element={<WorkOrderDetails setToken={setToken} isSupervisor={isSupervisor} />}
+        />
+        <Route
+          path="/work_orders/create"
+          element={<CreateWorkOrderForm setToken={setToken} />}
+        />
+        <Route
+          path="/work_orders/edit/:workOrderId"
+          element={<EditWorkOrderForm setToken={setToken} />}
+        />
       </Route>
-
-
     </Routes>
   );
 };

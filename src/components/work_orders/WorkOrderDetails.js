@@ -1,44 +1,66 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getWorkOrder, editWorkOrder, deleteWorkOrder } from '../../managers/WorkOrderManager';
+import { getWorkOrder, deleteWorkOrder, editWorkOrderStatus } from '../../managers/WorkOrderManager';
+
 
 export const WorkOrderDetails = ({ token, isSupervisor }) => {
   const [workOrder, setWorkOrder] = useState({});
-  const [workOrderStatus, updateWorkOrderStatus] = useState('');
-  const { workOrderId } = useParams(); // Rename the parameter to avoid conflicts
+  const { workOrderId } = useParams();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log('isSupervisor:', isSupervisor); // Debugging
-    // ...
-  }, [isSupervisor]);
-  
+  const assignedToUsers = workOrder?.assigned_to || [];
+  const createdByUser = workOrder?.created_by_user || {};
 
   useEffect(() => {
     getWorkOrder(workOrderId)
       .then((workOrderData) => {
         setWorkOrder(workOrderData);
-        updateWorkOrderStatus(workOrderData.status);
       })
   }, [workOrderId]);
 
-
-  useEffect(() => {
-    console.log('isSupervisor:', isSupervisor); // Debugging
-    // ...
-  }, [workOrderId]);
-
-  const assignedToUsers = workOrder?.assigned_to || [];
-  const createdByUser = workOrder?.created_by_user || {};
-
   const editWorkOrder = () => {
-    // Implement the logic to edit the work order here
-    // You can navigate to an edit page or show a modal for editing
-    // For example, you can use navigate to navigate to an edit page
-    navigate(`/edit-work-order/${workOrder.id}`);
+    navigate(`/work_orders/edit/${workOrder.id}`);
   };
 
-  const confirmDelete = () => {
+  const handleMarkInProgress = () => {
+    if (window.confirm('Are you sure you want to mark this work order as In Progress?')) {
+      editWorkOrderStatus(workOrder.id, 'In Progress')
+        .then((response) => {
+          if (response.ok) {
+            getWorkOrder(workOrderId)
+              .then((workOrderData) => {
+                setWorkOrder(workOrderData);
+              });
+          } else {
+            console.error('Error updating work order status');
+          }
+        })
+        .catch((error) => {
+          console.error('Error updating work order status:', error);
+        });
+    }
+  };
+  
+  const handleMarkCompleted = () => {
+    if (window.confirm('Are you sure you want to mark this work order as Completed?')) {
+      editWorkOrderStatus(workOrder.id, 'Completed')
+        .then((response) => {
+          if (response.ok) {
+            getWorkOrder(workOrderId)
+              .then((workOrderData) => {
+                setWorkOrder(workOrderData);
+              });
+          } else {
+            console.error('Error updating work order status');
+          }
+        })
+        .catch((error) => {
+          console.error('Error updating work order status:', error);
+        });
+    }
+  };
+  
+  const handleDelete = () => {
     // Implement a confirmation dialog or modal for deletion
     const userConfirmed = window.confirm('Are you sure you want to delete this work order?');
     if (userConfirmed) {
@@ -46,7 +68,7 @@ export const WorkOrderDetails = ({ token, isSupervisor }) => {
       deleteWorkOrder(workOrder.id)
         .then(() => {
           // Redirect or perform any necessary actions after deletion
-          navigate('/work-orders');
+          navigate('/work_orders');
         })
         .catch((error) => {
           console.error('Error deleting work order', error);
@@ -62,20 +84,21 @@ export const WorkOrderDetails = ({ token, isSupervisor }) => {
         <h2 className="text-xl font-semibold mb-2">{workOrder.title}</h2>
         <div className="flex justify-between mb-4">
           <div className="text-sm text-gray-600">
-            <p>Critical: {workOrder.critical ? 'Yes' : 'No'}</p>
+            <p>Emergency: {workOrder.critical ? 'Yes' : 'No'}</p>
             <p>Status: {workOrder.status}</p>
             <p>Due Date: {workOrder.due_date}</p>
-            <p>Created By: {createdByUser?.first_name} {createdByUser?.last_name}</p>
           </div>
           <div className="text-sm text-gray-600">
             <p>Category: {workOrder?.category?.name}</p>
             <p>Department: {workOrder?.department?.name}</p>
             <p>Assigned To:</p>
             <ul>
-              {assignedToUsers.map((assignedUser) => (
-                <li key={assignedUser.id}>{assignedUser.full_name}</li>
+              {assignedToUsers.map((assignedUser, index) => (
+                <li key={`${assignedUser.id}-${index}`}>{assignedUser.full_name}</li>
               ))}
             </ul>
+
+            <p>Created By: {createdByUser?.first_name} {createdByUser?.last_name}</p>
             <p className="text-gray-700 mb-2">{workOrder.description}</p>
           </div>
         </div>
@@ -84,15 +107,14 @@ export const WorkOrderDetails = ({ token, isSupervisor }) => {
         {isSupervisor ? (
           <div>
             <button onClick={editWorkOrder}>Edit</button>
-            <button onClick={deleteWorkOrder}>Delete</button>
+            <button onClick={handleDelete}>Delete</button>
           </div>
         ) : (
           <div>
-            <button>Mark Started</button>
-            <button>Mark Completed</button>
+            <button onClick={handleMarkInProgress}>Mark In Progress</button>
+            <button onClick={handleMarkCompleted}>Mark Completed</button>
           </div>
         )}
-
       </section>
     </>
   );

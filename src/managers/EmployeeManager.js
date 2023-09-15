@@ -6,7 +6,7 @@ export const getEmployee = (id) => {
   }).then(response => response.json());
 };
 
-export const getAllEmployees = (token) => {
+export const getAllEmployees = () => {
   return fetch("http://localhost:8000/employees", {
     headers: {
       "Authorization": `Token ${localStorage.getItem("auth_token")}`
