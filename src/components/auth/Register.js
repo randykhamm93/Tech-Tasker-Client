@@ -4,7 +4,8 @@ import { registerUser } from "../../managers/AuthManager";
 import "./Auth.css";
 
 export const Register = () => {
-  const email = useRef();
+  const email = useRef()
+  const phoneNumber = useRef()
   const firstName = useRef();
   const lastName = useRef();
   const password = useRef();
@@ -14,7 +15,7 @@ export const Register = () => {
   const specialty = useRef();
   const hourlyWage = useRef();
   const shift = useRef();
-  const accountType = useRef(); // Ref for account type dropdown
+  const accountType = useRef();
   const passwordDialog = useRef();
   const navigate = useNavigate();
 
@@ -24,6 +25,7 @@ export const Register = () => {
     if (password.current.value === verifyPassword.current.value) {
       const newUser = {
         email: email.current.value,
+        phone_number: phoneNumber.current.value,
         first_name: firstName.current.value,
         last_name: lastName.current.value,
         password: password.current.value,
@@ -32,7 +34,7 @@ export const Register = () => {
         specialty: specialty.current.value,
         hourly_wage: hourlyWage.current.value,
         shift: parseInt(shift.current.value),
-        account_type: accountType.current.value, 
+        account_type: accountType.current.value,
       };
 
       registerUser(newUser)
@@ -53,12 +55,15 @@ export const Register = () => {
         <div>Passwords do not match</div>
         <button className="button--close" onClick={(e) => passwordDialog.current.close()}>Close</button>
       </dialog>
-
       <form className="form--login" onSubmit={handleRegister}>
         <h1 className="h3 mb-3 font-weight-normal">Register an account</h1>
         <fieldset>
           <label htmlFor="email">Email</label>
           <input ref={email} type="email" name="email" className="form-control" placeholder="Email" required autoFocus />
+        </fieldset>
+        <fieldset>
+          <label htmlFor="phoneNumber">Phone Number</label>
+          <input ref={phoneNumber} type="tel" name="phoneNumber" className="form-control" placeholder="Phone number" required />
         </fieldset>
         <fieldset>
           <label htmlFor="firstName">First Name</label>

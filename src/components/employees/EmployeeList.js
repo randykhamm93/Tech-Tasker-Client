@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { getAllEmployees } from "../../managers/EmployeeManager";
 
 
-export const EmployeeList = () => {
+export const EmployeeList = (token) => {
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {

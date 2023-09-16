@@ -8,7 +8,8 @@ import { WorkOrderDetails } from "../components/work_orders/WorkOrderDetails";
 import { EditWorkOrderForm } from "../components/work_orders/EditWorkOrderForm";
 import { CreateWorkOrderForm } from "../components/work_orders/CreateWorkOrderForm";
 import { EmployeeList } from "../components/employees/EmployeeList";
-import { EmployeeProfile } from "../components/employees/EmployeeProfile"; 
+import { EmployeeProfile } from "../components/employees/EmployeeProfile";
+import { MyProfile } from "../components/profiles/MyProfile";
 
 export const ApplicationViews = ({ token, setToken, isSupervisor }) => {
   return (
@@ -20,8 +21,8 @@ export const ApplicationViews = ({ token, setToken, isSupervisor }) => {
       <Route path="/employees" element={<EmployeeList setToken={setToken} />} />
 
       <Route
-        path="/employees/:employeeId" 
-        element={<EmployeeProfile setToken={setToken} />} 
+        path="/employees/:employeeId"
+        element={<EmployeeProfile setToken={setToken} />}
       />
 
       <Route
@@ -41,7 +42,9 @@ export const ApplicationViews = ({ token, setToken, isSupervisor }) => {
           path="/work_orders/edit/:workOrderId"
           element={<EditWorkOrderForm setToken={setToken} />}
         />
+        
       </Route>
+        <Route path="/my_profile" element={<MyProfile token={token} isSupervisor={isSupervisor} />} />
     </Routes>
   );
 };

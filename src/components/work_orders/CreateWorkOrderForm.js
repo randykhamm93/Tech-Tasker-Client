@@ -62,11 +62,9 @@ export const CreateWorkOrderForm = () => {
   };
 
   createWorkOrder(newWorkOrder)
-  .then((response) => response.json()) // Parse the response body as JSON
+  .then((response) => response.json()) 
   .then((createdWorkOrder) => {
-    // Check if the response contains the 'id' field
     if (createdWorkOrder && createdWorkOrder.id) {
-      // Redirect to the details page of the newly created work order
       navigate(`/work_orders/${createdWorkOrder.id}`);
     } else {
       console.error('Error creating work order: Invalid response');

@@ -20,7 +20,6 @@ export const Login = ({ setToken }) => {
     loginUser(user)
       .then((res) => {
         if ("valid" in res && res.valid) {
-          // Set the token in your application's state
           setToken(res.token);
   
           // Capture and store the userEmployeeId in localStorage
@@ -40,7 +39,6 @@ export const Login = ({ setToken }) => {
       })
       .catch((error) => {
         console.error("Login error:", error);
-        // Handle other errors here, e.g., network issues
       });
   };
   

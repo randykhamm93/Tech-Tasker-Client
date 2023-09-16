@@ -2,13 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteEmployee, getEmployee } from "../../managers/EmployeeManager";
 
-export const EmployeeProfile = ({ token, isSupervisor }) => {
+export const EmployeeProfile = () => {
   const [employee, setEmployee] = useState({});
   const { employeeId } = useParams();
   const navigate = useNavigate();
-
-  const assignedToUsers = employee?.assigned_to || [];
-  const createdByUser = employee?.created_by_user || {};
 
   useEffect(() => {
     getEmployee(employeeId)
