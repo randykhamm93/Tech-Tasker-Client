@@ -8,7 +8,7 @@ import { WorkOrderDetails } from "../components/work_orders/WorkOrderDetails";
 import { EditWorkOrderForm } from "../components/work_orders/EditWorkOrderForm";
 import { CreateWorkOrderForm } from "../components/work_orders/CreateWorkOrderForm";
 import { EmployeeList } from "../components/employees/EmployeeList";
-
+import { EmployeeProfile } from "../components/employees/EmployeeProfile"; 
 
 export const ApplicationViews = ({ token, setToken, isSupervisor }) => {
   return (
@@ -17,8 +17,12 @@ export const ApplicationViews = ({ token, setToken, isSupervisor }) => {
       <Route path="/register" element={<Register setToken={setToken} />} />
       <Route element={<Authorized token={token} />} />
 
-
       <Route path="/employees" element={<EmployeeList setToken={setToken} />} />
+
+      <Route
+        path="/employees/:employeeId" 
+        element={<EmployeeProfile setToken={setToken} />} 
+      />
 
       <Route
         path="/work_orders"

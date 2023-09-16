@@ -1,46 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getAllEmployees } from "../../managers/EmployeeManager";
+import { getAllWorkOrders } from "../../managers/WorkOrderManager";
 
 
-export const EmployeeList = () => {
-  const [employees, setEmployees] = useState([]);
+export const MyWorkOrders = () => {
+  const [workOrders, setWorkOrders] = useState([]);
 
   useEffect(() => {
-    getAllEmployees().then((employeesData) => setEmployees(employeesData));
+    getAllWorkOrders().then((workOrderData) => setWorkOrders(workOrderData));
   }, []);
 
   return (
     <div className="page-container">
-      <h1 className="page-header">Employees</h1>
+      <h1 className="page-header">Work Orders</h1>
       <div className="work_order-container">
         <div className="left-side">
           <table className="min-w-full">
             <thead>
               <tr>
                 <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                  Name
-                </th>
-                <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                  Role
+                  Title
                 </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {employees.map((employee) => (
-                <tr key={employee.id}>
+              {workOrders.map((workOrder) => (
+                <tr key={workOrder.id}>
                   <td className="px-6 py-4 whitespace-no-wrap">
-                    <Link to={`/employees/${employee.id}`}>
-                      {employee.full_name}
+                    <Link to={`/work_orders/${workOrder.id}`}>
+                      {workOrder.title}
                     </Link>
-                  </td>
-                  <td className="px-6 py-4 whitespace-no-wrap">
-                    {employee.role}
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+          <button className="create-button">
+            <Link to="/work_orders/create">Create New Work Order</Link>
+          </button>
         </div>
       </div>
     </div>

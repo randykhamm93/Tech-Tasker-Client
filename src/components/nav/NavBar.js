@@ -15,7 +15,7 @@ export const NavBar = ({ token, setToken }) => {
     return (
         <nav className="navbar is-success mb-3" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-                <a className="navbar-item" href="/">
+                <a className="navbar-item" href="/work_orders">
                     <img height="3rem" alt="Rare Logo" /> <h1 className="title is-4">TechTasker</h1>
                 </a>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}

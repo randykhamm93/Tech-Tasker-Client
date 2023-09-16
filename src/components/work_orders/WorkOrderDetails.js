@@ -61,18 +61,14 @@ export const WorkOrderDetails = ({ token, isSupervisor }) => {
   };
   
   const handleDelete = () => {
-    // Implement a confirmation dialog or modal for deletion
     const userConfirmed = window.confirm('Are you sure you want to delete this work order?');
     if (userConfirmed) {
-      // Send a request to your backend API to delete the work order
       deleteWorkOrder(workOrder.id)
         .then(() => {
-          // Redirect or perform any necessary actions after deletion
           navigate('/work_orders');
         })
         .catch((error) => {
           console.error('Error deleting work order', error);
-          // Handle the error as needed
         });
     }
   };
