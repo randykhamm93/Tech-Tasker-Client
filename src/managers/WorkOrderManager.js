@@ -58,3 +58,11 @@ export const editWorkOrderStatus = (id, newStatus) => {
     body: JSON.stringify({ status: newStatus }),
   });
 };
+
+export const getEmployeeWorkOrders = () => {
+  return fetch("http://localhost:8000/employee_work_orders", {
+    headers: {
+      "Authorization": `Token ${localStorage.getItem("auth_token")}`
+    }
+  }).then(response => response.json());
+};

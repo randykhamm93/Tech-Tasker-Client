@@ -1,21 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getWorkOrder, deleteWorkOrder, editWorkOrderStatus } from '../../managers/WorkOrderManager';
+import { getEmployee } from '../../managers/EmployeeManager';
 
-
-export const WorkOrderDetails = ({ token, isSupervisor }) => {
+export const WorkOrderDetails = () => {
   const [workOrder, setWorkOrder] = useState({});
+  const [isSupervisor, setIsSupervisor] = useState(false);
   const { workOrderId } = useParams();
-  const navigate = useNavigate();
-
   const assignedToUsers = workOrder?.assigned_to || [];
   const createdByUser = workOrder?.created_by_user || {};
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const userEmployeeId = localStorage.getItem("userEmployeeId");
+    
     getWorkOrder(workOrderId)
       .then((workOrderData) => {
         setWorkOrder(workOrderData);
-      })
+      });
+
+    if (userEmployeeId) {
+      getEmployee(userEmployeeId)
+        .then((employeeData) => {
+          setIsSupervisor(employeeData.is_supervisor); 
+        })
+        .catch((error) => {
+          console.error("Error fetching employee data:", error);
+        });
+    }
   }, [workOrderId]);
 
   const editWorkOrder = () => {

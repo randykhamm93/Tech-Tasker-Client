@@ -33,7 +33,7 @@ export const Register = () => {
         role: role.current.value,
         specialty: specialty.current.value,
         hourly_wage: hourlyWage.current.value,
-        shift: parseInt(shift.current.value),
+        shift: (shift.current.value),
         account_type: accountType.current.value,
       };
 
@@ -41,7 +41,7 @@ export const Register = () => {
         .then((res) => {
           if ("token" in res) {
             localStorage.setItem("auth_token", res.token);
-            navigate("/");
+            navigate("/login");
           }
         });
     } else {
@@ -86,8 +86,14 @@ export const Register = () => {
           <input ref={start_date} type="date" name="start_date" className="form-control" required />
         </fieldset>
         <fieldset>
-          <label htmlFor="role">Role</label>
-          <input ref={role} type="text" name="role" className="form-control" placeholder="Role" required />
+          <label htmlFor="role">Job Title</label>
+          <select ref={role} name="role" className="form-control" required>
+            <option value="Apprentice">Apprentice</option>
+            <option value="Maintenance Tech I">Maintenance Tech I</option>
+            <option value="Maintenance Tech II">Maintenance Tech II</option>
+            <option value="Maintenance Tech III">Maintenance Tech III</option>
+            <option value="Supervisor">Supervisor</option>
+          </select>
         </fieldset>
         <fieldset>
           <label htmlFor="specialty">Specialty</label>
@@ -99,7 +105,11 @@ export const Register = () => {
         </fieldset>
         <fieldset>
           <label htmlFor="shift">Shift</label>
-          <input ref={shift} type="text" name="shift" className="form-control" placeholder="Shift" required />
+          <select ref={shift} name="shift" className="form-control" required>
+            <option value="First">First</option>
+            <option value="Second">Second</option>
+            <option value="Third">Third</option>
+          </select>
         </fieldset>
         <fieldset>
           <label htmlFor="accountType">Account Type</label>

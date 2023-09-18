@@ -10,8 +10,9 @@ import { CreateWorkOrderForm } from "../components/work_orders/CreateWorkOrderFo
 import { EmployeeList } from "../components/employees/EmployeeList";
 import { EmployeeProfile } from "../components/employees/EmployeeProfile";
 import { MyProfile } from "../components/profiles/MyProfile";
+import { MyWorkOrders } from "../components/work_orders/MyWorkOrders";
 
-export const ApplicationViews = ({ token, setToken, isSupervisor }) => {
+export const ApplicationViews = ({ token, setToken }) => {
   return (
     <Routes>
       <Route path="/login" element={<Login setToken={setToken} />} />
@@ -29,10 +30,10 @@ export const ApplicationViews = ({ token, setToken, isSupervisor }) => {
         path="/work_orders"
         element={<Authorized token={token} />}
       >
-        <Route index element={<WorkOrderList setToken={setToken} isSupervisor={isSupervisor} />} />
+        <Route index element={<WorkOrderList setToken={setToken} />} />
         <Route
           path="/work_orders/:workOrderId"
-          element={<WorkOrderDetails setToken={setToken} isSupervisor={isSupervisor} />}
+          element={<WorkOrderDetails setToken={setToken} />}
         />
         <Route
           path="/work_orders/create"
@@ -42,9 +43,13 @@ export const ApplicationViews = ({ token, setToken, isSupervisor }) => {
           path="/work_orders/edit/:workOrderId"
           element={<EditWorkOrderForm setToken={setToken} />}
         />
-        
+        <Route
+        path="/work_orders/my_work_orders"
+        element={<MyWorkOrders setToken={setToken} />}
+      />
       </Route>
-        <Route path="/my_profile" element={<MyProfile token={token} isSupervisor={isSupervisor} />} />
+
+      <Route path="/my_profile" element={<MyProfile token={token} />} />
     </Routes>
   );
 };
