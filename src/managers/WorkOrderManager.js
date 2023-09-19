@@ -44,11 +44,11 @@ export const editWorkOrder = (id, updatedData) => {
       "Authorization": `Token ${localStorage.getItem("auth_token")}`
     },
     body: JSON.stringify(updatedData),
-  })
+  });
 };
 
 export const editWorkOrderStatus = (id, newStatus) => {
-  return fetch(`http://localhost:8000/work_orders/${id}`, {
+  return fetch(`http://localhost:8000/work_orders/${id}/update_status/`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -58,6 +58,7 @@ export const editWorkOrderStatus = (id, newStatus) => {
     body: JSON.stringify({ status: newStatus }),
   });
 };
+
 
 export const getEmployeeWorkOrders = () => {
   return fetch("http://localhost:8000/employee_work_orders", {

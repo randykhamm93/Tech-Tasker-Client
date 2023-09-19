@@ -55,7 +55,7 @@ export const EditWorkOrderForm = () => {
 
   return (
     <form className="workOrderForm">
-      <h2 className="workOrderForm__title">Edit Work Order #{workOrder.id}</h2>
+      <h2 className="workOrderForm__title">Edit Work Order</h2>
       <fieldset>
         <div className="form-group">
           <label htmlFor="title">Title: </label>
@@ -155,7 +155,7 @@ export const EditWorkOrderForm = () => {
           <input
             type="checkbox"
             name="critical"
-            className="form-check-input"
+            className="ml-2"
             checked={critical}
             onChange={(evt) => {
               setCritical(evt.target.checked);
@@ -214,8 +214,8 @@ export const EditWorkOrderForm = () => {
 
           editWorkOrder(workOrderId, work_order)
             .then(() => navigate(`/work_orders/${workOrderId}`));
-        }}
-      >Save</button>
+        }}className='btn-success'
+      >Save Work Order</button>
     </form>
   );
 };

@@ -39,10 +39,8 @@ export const MyProfile = () => {
             <p>Start Date: {myProfile.start_date}</p>
           </div>
         </div>
-      </section>
-      <section>
         <div>
-          <button onClick={editEmployee}>Edit</button>
+          <button onClick={editEmployee} className="btn-primary">Edit Profile</button>
         </div>
       </section>
     </>

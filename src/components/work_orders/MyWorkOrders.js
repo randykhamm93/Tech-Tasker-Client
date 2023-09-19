@@ -26,15 +26,27 @@ export const MyWorkOrders = () => {
                 <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                   Title
                 </th>
+                <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  Due Date
+                </th>
+                <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  Status
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {workOrders.map((workOrder) => (
-                <tr key={workOrder.id}>
+                <tr key={workOrder.work_order.id}>
                   <td className="px-6 py-4 whitespace-no-wrap">
                     <Link to={`/work_orders/${workOrder.work_order.id}`}>
                       {workOrder.work_order.title}
                     </Link>
+                  </td>
+                  <td className="px-6 py-4 whitespace-no-wrap">
+                    {workOrder.work_order.due_date}
+                  </td>
+                  <td className="px-6 py-4 whitespace-no-wrap">
+                    {workOrder.work_order.status}
                   </td>
                 </tr>
               ))}

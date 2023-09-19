@@ -6,8 +6,8 @@ import { getEmployee } from '../../managers/EmployeeManager';
 export const WorkOrderDetails = () => {
   const [workOrder, setWorkOrder] = useState({});
   const [isSupervisor, setIsSupervisor] = useState(false);
-  const { workOrderId } = useParams();
   const assignedToUsers = workOrder?.assigned_to || [];
+  const { workOrderId } = useParams();
   const createdByUser = workOrder?.created_by_user || {};
   const navigate = useNavigate();
 
@@ -41,6 +41,7 @@ export const WorkOrderDetails = () => {
           if (response.ok) {
             getWorkOrder(workOrderId)
               .then((workOrderData) => {
+                console.log("Updated Work Order Data:", workOrderData); // Log the updated data
                 setWorkOrder(workOrderData);
               });
           } else {
@@ -86,44 +87,47 @@ export const WorkOrderDetails = () => {
   };
 
   return (
-    <>
-      <section className="work-order p-4 bg-white shadow-lg rounded-lg">
-        <h1 className="text-2xl font-semibold mb-4">Work Order #{workOrder.id}</h1>
-        <h2 className="text-xl font-semibold mb-2">{workOrder.title}</h2>
-        <div className="flex justify-between mb-4">
-          <div className="text-sm text-gray-600">
-            <p>Emergency: {workOrder.critical ? 'Yes' : 'No'}</p>
-            <p>Status: {workOrder.status}</p>
-            <p>Due Date: {workOrder.due_date}</p>
-          </div>
-          <div className="text-sm text-gray-600">
-            <p>Category: {workOrder?.category?.name}</p>
-            <p>Department: {workOrder?.department?.name}</p>
-            <p>Assigned To:</p>
-            <ul>
-              {assignedToUsers.map((assignedUser, index) => (
-                <li key={`${assignedUser.id}-${index}`}>{assignedUser.full_name}</li>
-              ))}
-            </ul>
-
-            <p>Created By: {createdByUser?.first_name} {createdByUser?.last_name}</p>
-            <p className="text-gray-700 mb-2">{workOrder.description}</p>
+  <>
+    <section className="work-order p-4 bg-white shadow-lg rounded-lg">
+      <h2 className="text-xl font-semibold mb-2">{workOrder.title}</h2>
+      <div className="flex justify-between mb-4">
+        <div className="text-sm text-gray-600">
+          <p>Category: {workOrder?.category?.name}</p>
+          <p>Department: {workOrder?.department?.name}</p>
+          <p>Status: {workOrder.status}</p>
+          <p>Created By: {createdByUser?.first_name} {createdByUser?.last_name}</p>
+        </div>
+          <p>Assigned To:</p>
+          <ul>
+            {assignedToUsers.map((assignedUser, index) => (
+              <li key={`${assignedUser.id}-${index}`}>{assignedUser.full_name}</li>
+            ))}
+          </ul>
+      </div>
+      <div>
+        <p className="text-sm text-gray-600">Description:</p>
+        <p className="text-gray-700 mb-2">{workOrder.description}</p>
+      </div>
+      <div>
+      {isSupervisor ? (
+        <div>
+          <button onClick={editWorkOrder} className='btn-primary'>Edit Work Order</button>
+          <br></br>
+          <button onClick={handleDelete}className='btn-danger'>Delete Work Order</button>
+        </div>
+      ) : (
+        <div>
+          <div>
+            <button onClick={handleMarkInProgress} className='btn-primary'>Mark In Progress</button>
+          </div>  
+          <div>
+            <button onClick={handleMarkCompleted} className='btn-success'>Mark Completed</button>
           </div>
         </div>
-      </section>
-      <section>
-        {isSupervisor ? (
-          <div>
-            <button onClick={editWorkOrder}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
-          </div>
-        ) : (
-          <div>
-            <button onClick={handleMarkInProgress}>Mark In Progress</button>
-            <button onClick={handleMarkCompleted}>Mark Completed</button>
-          </div>
-        )}
-      </section>
-    </>
+      )}
+      </div>
+    </section>
+    
+  </>
   );
 };

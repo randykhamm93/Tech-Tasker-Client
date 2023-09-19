@@ -98,18 +98,21 @@ export const CreateWorkOrderForm = () => {
           <label htmlFor="department">Department: </label>
           <select
             name="department"
-            required autoFocus
+            required
+            autoFocus
             className="form-control"
             value={selectedDepartment}
             onChange={(evt) => {
               setSelectedDepartment(evt.target.value);
             }}
           >
-            {Array.isArray(departments) && departments.map((department) => (
-              <option key={department.id} value={department.id}>
-                {department.name}
-              </option>
-            ))}
+            <option value={0}>Select Department</option>
+            {Array.isArray(departments) &&
+              departments.map((department) => (
+                <option key={department.id} value={department.id}>
+                  {department.name}
+                </option>
+              ))}
           </select>
         </div>
       </fieldset>
@@ -118,18 +121,21 @@ export const CreateWorkOrderForm = () => {
           <label htmlFor="category">Category: </label>
           <select
             name="category"
-            required autoFocus
+            required
+            autoFocus
             className="form-control"
             value={selectedCategory}
             onChange={(evt) => {
               setSelectedCategory(evt.target.value);
             }}
           >
-            {Array.isArray(categories) && categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
+            <option value={0}>Select Category</option>
+            {Array.isArray(categories) &&
+              categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
           </select>
         </div>
       </fieldset>
@@ -173,11 +179,11 @@ export const CreateWorkOrderForm = () => {
       </fieldset>
       <fieldset>
         <div className="form-group">
-          <label htmlFor="critical">Emergency:</label>
+          <label htmlFor="critical">Emergency?</label>
           <input
             type="checkbox"
             name="critical"
-            className="form-check-input"
+            className="ml-2"
             checked={critical}
             onChange={(evt) => {
               setCritical(evt.target.checked);
@@ -218,10 +224,10 @@ export const CreateWorkOrderForm = () => {
           />
         </div>
       </fieldset>
-      <button
+      <button className='btn-success'
         type="submit"
         onClick={handleFormSubmit} 
-      >Save</button>
+      >Save Work Order</button>
     </form>
   );
 };
