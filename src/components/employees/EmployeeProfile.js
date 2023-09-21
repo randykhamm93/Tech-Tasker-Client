@@ -10,7 +10,7 @@ export const EmployeeProfile = () => {
 
   useEffect(() => {
     const userEmployeeId = localStorage.getItem("userEmployeeId");
-    
+
     getEmployee(employeeId)
       .then((employeeData) => {
         setEmployee(employeeData);
@@ -31,10 +31,6 @@ export const EmployeeProfile = () => {
       });
   }, [employeeId]);
 
-  const editEmployee = () => {
-    navigate(`/employees/edit/${employee.id}`);
-  };
-
   const handleDelete = () => {
     const userConfirmed = window.confirm('Are you sure you want to delete this employee?');
     if (userConfirmed) {
@@ -50,30 +46,25 @@ export const EmployeeProfile = () => {
 
   return (
     <>
-      <section className="work-order p-4 bg-white shadow-lg rounded-lg">
-        <h1 className="text-xl font-semibold mb-2">{employee.full_name}</h1>
-        <div className="flex justify-between mb-4">
-          <div className="text-sm text-gray-600">
-            <p>Role: {employee.role}</p>
-            <p>Specialty: {employee.specialty}</p>
-            <p>Shift: {employee.shift}</p>
-            <p>Phone Number: {employee.phone_number}</p>
-            <p>Email: {employee.email}</p>
-            <p>Start Date: {employee.start_date}</p>
+      <div className="d-flex align-items-center justify-content-center" style={{ minHeight: '75vh' }}>
+        <section className="work-order p-5 bg-white shadow-lg rounded-lg col-md-4">
+          <h1 className="text-xl-center font-semibold mb-5">{employee.full_name}</h1>
+          <div className="text-center mb-4"> {/* Center-align text within the div */}
+            <p><strong>Role:</strong> {employee.role}</p>
+            <p><strong>Specialty:</strong> {employee.specialty}</p>
+            <p><strong>Shift:</strong> {employee.shift}</p>
+            <p><strong>Phone Number:</strong> {employee.phone_number}</p>
+            <p><strong>Email:</strong> {employee.email}</p>
+            <p><strong>Start Date:</strong> {employee.start_date}</p>
           </div>
-        </div>
-        {isSupervisor && (
-          <div>
-            <div>
-              <button onClick={editEmployee} className="btn-primary">Edit Employee</button>
+          {isSupervisor && (
+            <div className="text-center"> {/* Center-align the button */}
+              <button onClick={handleDelete} className="btn btn-danger">Delete Employee</button>
             </div>
-            <div>
-              <button onClick={handleDelete} className="btn-danger">Delete Employee</button>
-            </div>
-          </div>
-        )}
-      </section>
-      
+          )}
+        </section>
+      </div>
     </>
   );
+
 };

@@ -155,7 +155,7 @@ export const EditWorkOrderForm = () => {
           <input
             type="checkbox"
             name="critical"
-            className="ml-2"
+            className="form-check-input"
             checked={critical}
             onChange={(evt) => {
               setCritical(evt.target.checked);

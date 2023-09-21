@@ -88,12 +88,13 @@ export const WorkOrderDetails = () => {
 
   return (
   <>
-    <section className="work-order p-4 bg-white shadow-lg rounded-lg">
-      <h2 className="text-xl font-semibold mb-2">{workOrder.title}</h2>
+    <section className="work-order p-4 bg-white shadow-lg rounded-lg m-5">
+      <h2 className="text-xl font-semibold mb-4 text-center">{workOrder.title}</h2>
       <div className="flex justify-between mb-4">
         <div className="text-sm text-gray-600">
           <p>Category: {workOrder?.category?.name}</p>
           <p>Department: {workOrder?.department?.name}</p>
+          <p>Emergency: {workOrder.critical ? "Yes" : "No"}</p>
           <p>Status: {workOrder.status}</p>
           <p>Created By: {createdByUser?.first_name} {createdByUser?.last_name}</p>
         </div>
@@ -111,17 +112,17 @@ export const WorkOrderDetails = () => {
       <div>
       {isSupervisor ? (
         <div>
-          <button onClick={editWorkOrder} className='btn-primary'>Edit Work Order</button>
+          <button onClick={editWorkOrder} className='btn btn-primary mt-3 mb-3'>Edit Work Order</button>
           <br></br>
-          <button onClick={handleDelete}className='btn-danger'>Delete Work Order</button>
+          <button onClick={handleDelete}className='btn btn-danger '>Delete Work Order</button>
         </div>
       ) : (
         <div>
           <div>
-            <button onClick={handleMarkInProgress} className='btn-primary'>Mark In Progress</button>
+            <button onClick={handleMarkInProgress} className='btn btn-primary mt-3 mb-3'>Mark In Progress</button>
           </div>  
           <div>
-            <button onClick={handleMarkCompleted} className='btn-success'>Mark Completed</button>
+            <button onClick={handleMarkCompleted} className='btn btn-success'>Mark Completed</button>
           </div>
         </div>
       )}

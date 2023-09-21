@@ -40,34 +40,31 @@ export const Login = ({ setToken }) => {
   };
 
   return (
-    <section className="columns is-centered">
-      <form className="column is-two-thirds" onSubmit={handleLogin}>
-        <h1 className="title">Welcome To TechTasker...</h1>
-        <p className="subtitle">Please sign in</p>
-        <div className="field">
-          <label className="label">Email</label>
-          <div className="control">
-            <input className="input" type="text" ref={email} />
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Password</label>
-          <div className="control">
-            <input className="input" type="password" ref={password} />
-          </div>
-        </div>
-        <div className="field is-grouped">
-          <div className="control">
-            <button className="btn-primary" type="submit">Submit</button>
-          </div>
-          <div className="control">
-            <Link to="/register" className="button is-link is-light">Register</Link>
-          </div>
-        </div>
-        {
-          isUnsuccessful ? <p className="help is-danger">Email or password not valid</p> : ''
-        }
-      </form>
-    </section>
-  )
+    <div className="d-flex align-items-center justify-content-center" style={{ minHeight: '75vh' }}>
+      <div className="container bg-light" style={{ maxWidth: '800px', maxHeight: '800px' }}>
+        <section className="row justify-content-center">
+          <form className="col-12 col-md-10" onSubmit={handleLogin}>
+            <h1 className="text-dark text-center justify-content-center mb-5 mt-2 ">Welcome To TechTasker</h1>
+            <h4 className="text-dark subtitle mb-4">Please sign in</h4>
+            <div className="mb-3">
+              <label htmlFor="email" className="text-dark form-label">Email</label>
+              <input className="form-control" type="text" id="email" ref={email} />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="password" className="text-dark form-label">Password</label>
+              <input className="form-control" type="password" id="password" ref={password} />
+            </div>
+            <div className="mb-3">
+              <button className="btn btn-primary mb-3" type="submit">Submit</button>
+              <Link to="/register" className="btn btn-link mb-3">Register</Link>
+            </div>
+            {isUnsuccessful ? <p className="text-danger">Email or password not valid</p> : ''}
+          </form>
+        </section>
+      </div>
+    </div>
+  );
+
+
+
 }
