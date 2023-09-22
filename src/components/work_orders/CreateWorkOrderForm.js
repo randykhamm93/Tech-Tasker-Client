@@ -156,7 +156,7 @@ export const CreateWorkOrderForm = () => {
         </div>
       </fieldset>
       <fieldset>
-        <label htmlFor="assigned_to">Assigned To:</label>
+        <label htmlFor="assigned_to">Assign To:</label>
         <select
           name="assigned_to"
           required
