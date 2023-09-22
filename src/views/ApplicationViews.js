@@ -11,6 +11,7 @@ import { EmployeeList } from "../components/employees/EmployeeList";
 import { EmployeeProfile } from "../components/employees/EmployeeProfile";
 import { MyProfile } from "../components/profiles/MyProfile";
 import { MyWorkOrders } from "../components/work_orders/MyWorkOrders";
+import { EditMyProfile } from "../components/profiles/EditMyProfile";
 
 export const ApplicationViews = ({ token, setToken }) => {
   return (
@@ -24,6 +25,11 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route
         path="/employees/:employeeId"
         element={<EmployeeProfile setToken={setToken} />}
+      />
+
+      <Route
+        path="/employees/edit/:employeeId"
+        element={<EditMyProfile setToken={setToken} />}
       />
 
       <Route
@@ -49,7 +55,10 @@ export const ApplicationViews = ({ token, setToken }) => {
       />
       </Route>
 
-      <Route path="/my_profile" element={<MyProfile token={token} />} />
+      <Route path="/my_profile/:employeeId" element={<MyProfile token={token} />} />
+
+      <Route path="/my_profile/edit/:employeeId" element={<EditMyProfile />} />
+
     </Routes>
   );
 };

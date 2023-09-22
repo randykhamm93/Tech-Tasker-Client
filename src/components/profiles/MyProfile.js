@@ -21,16 +21,16 @@ export const MyProfile = () => {
   }, []);
 
   const editEmployee = () => {
-    navigate(`/work_orders/edit/${myProfile.id}`);
+    navigate(`/my_profile/edit/${myProfile.id}`);
   };
 
   return (
     <>
-      <div className="d-flex align-items-center justify-content-center" style={{ minHeight: '75vh' }}>
-        <section className="work-order p-5 bg-white shadow-lg rounded-lg col-md-4">
+      <div className="position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
+        <section className="work-order p-5 bg-light" style={{width: "500px"}}>
           <h1 className="text-xl-center font-semibold mb-5">{myProfile.full_name}</h1>
-          <div className="text-center mb-4"> {/* Center-align text within the div */}
-            <p><strong>Role:</strong> {myProfile.role}</p>
+          <div className="mb-4"> 
+            <p><strong>Job Title:</strong> {myProfile.role}</p>
             <p><strong>Specialty:</strong> {myProfile.specialty}</p>
             <p><strong>Hourly Wage:</strong> {myProfile.hourly_wage}</p>
             <p><strong>Shift:</strong> {myProfile.shift}</p>
@@ -38,8 +38,8 @@ export const MyProfile = () => {
             <p><strong>Email:</strong> {myProfile.email}</p>
             <p><strong>Start Date:</strong> {myProfile.start_date}</p>
           </div>
-          <div className="text-center"> {/* Center-align the button */}
-            <button onClick={editEmployee} className="btn btn-primary">Edit Profile</button>
+          <div className="text-center">
+            <button onClick={editEmployee} className="btn btn-primary mt-2">Edit Profile</button>
           </div>
         </section>
       </div>

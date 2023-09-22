@@ -33,7 +33,7 @@ export const WorkOrderList = () => {
     navigate("/work_orders/my_work_orders");
   };
 
-  const getBadgeClass = (status) => {
+  const getButtonClass = (status) => {
     switch (status) {
       case 'Not Started':
         return 'btn btn-danger';
@@ -42,46 +42,55 @@ export const WorkOrderList = () => {
       case 'Completed':
         return 'btn btn-success';
       default:
-        return 'btn btn-secondary'; 
+        return 'btn btn-secondary';
     }
   };
 
   return (
-  <div className="container d-flex align-items-center justify-content-center" style={{ minHeight: '75vh' }}>
-    <div className="list-group">
-      <div className="bg-white container-xl">
-      <h1 className="page-header text-dark text-center mt-3">All Work Orders</h1>
-        {workOrders.map((workOrder) => (
-          <div key={workOrder.id} className="mb-3 p-3">
-            <Link to={`/work_orders/${workOrder.id}`} className="text-decoration-none">
-              <div className="list-group-item d-flex justify-content-between align-items-center m-2">
-                <div className=" align-items-center text-primary">{workOrder.title}</div>
-                <div className="d-flex flex-row align-items-end">
-                  <span className={`btn-sm m-2 ${getBadgeClass(workOrder.status)}`}>{workOrder.status}</span>
-                  <span className="btn btn-sm btn-secondary m-2">{workOrder.due_date}</span>
-                </div>
-              </div>
-            </Link>
+    <div className="position-absolute top-50 start-50 translate-middle container d-flex align-items-center justify-content-center" >
+      <div className="list-group">
+        <div className="bg-light container">
+          <h1 className="page-header text-dark text-center mt-3 mb-3" style={{ minWidth: '1000px' }}>All Work Orders</h1>
+          <table className="table table-striped table-bordered text-center">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Due Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {workOrders.map((workOrder) => (
+                <tr key={workOrder.id}>
+                  <td>
+                    <Link to={`/work_orders/${workOrder.id}`} className="text-decoration-none text-primary">
+                      {workOrder.title}
+                    </Link>
+                  </td>
+                  <td>{workOrder.due_date}</td>
+                  <td>
+                    <span className={`btn btn-sm ${getButtonClass(workOrder.status)}`}>
+                      {workOrder.status}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="d-flex justify-content-center">
+            {isSupervisor ? (
+              <button className="btn btn-primary m-5" onClick={navigateToCreateWorkOrder}>
+                Create New Work Order
+              </button>
+            ) : (
+              <button className="btn btn-primary m-5" onClick={navigateToMyWorkOrders}>
+                My Work Orders
+              </button>
+            )}
           </div>
-        ))}
-        {isSupervisor ? (
-          <button className="btn btn-success m-3"  onClick={navigateToCreateWorkOrder}>
-            Create New Work Order
-          </button>
-        ) : (
-          <button className="btn btn-primary m-3" onClick={navigateToMyWorkOrders}>
-            My Work Orders
-          </button>
-        )}
+        </div>
       </div>
     </div>
-  </div>
-);
-
-  
-  
-  
-  
-  
+  );
   
 };

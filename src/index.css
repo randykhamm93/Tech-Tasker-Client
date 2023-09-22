@@ -3,11 +3,7 @@ body {
   background-image: url("https://indianaprecisiongrinding.com/wp-content/uploads/2022/05/20220520_IPG_ProcessEngineering_1200x600-1080x600.jpg");
 
   /* Set background properties to cover the entire viewport */
-  background-size: contain; /* Change from 'contain' to 'auto' */
-  background-position: center;
+  background-size: auto; /* Change from 'contain' to 'auto' */
+  background-position: top;
   background-repeat: repeat;
-
-  /* Set any other styles for the body */
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
 }

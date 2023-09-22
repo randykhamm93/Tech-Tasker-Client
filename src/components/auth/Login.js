@@ -38,25 +38,25 @@ export const Login = ({ setToken }) => {
         console.error("Login error:", error);
       });
   };
-
   return (
-    <div className="d-flex align-items-center justify-content-center" style={{ minHeight: '75vh' }}>
-      <div className="container bg-light" style={{ maxWidth: '800px', maxHeight: '800px' }}>
+    <div className="position-absolute top-50 start-50 translate-middle
+    d-flex align-items-center justify-content-center">
+      <div className="container bg-light border border" style={{ width: '800px', maxHeight: '500px' }}>
         <section className="row justify-content-center">
-          <form className="col-12 col-md-10" onSubmit={handleLogin}>
-            <h1 className="text-dark text-center justify-content-center mb-5 mt-2 ">Welcome To TechTasker</h1>
-            <h4 className="text-dark subtitle mb-4">Please sign in</h4>
+          <form className="col-md-8" onSubmit={handleLogin}>
+            <h1 className="text-center justify-content-center mb-5 mt-3">Welcome To TechTasker</h1>
+            <h4 className=" subtitle mb-4">Please sign in</h4>
             <div className="mb-3">
-              <label htmlFor="email" className="text-dark form-label">Email</label>
+              <label htmlFor="email" className=" form-label">Email</label>
               <input className="form-control" type="text" id="email" ref={email} />
             </div>
             <div className="mb-3">
-              <label htmlFor="password" className="text-dark form-label">Password</label>
+              <label htmlFor="password" className=" form-label">Password</label>
               <input className="form-control" type="password" id="password" ref={password} />
             </div>
             <div className="mb-3">
-              <button className="btn btn-primary mb-3" type="submit">Submit</button>
-              <Link to="/register" className="btn btn-link mb-3">Register</Link>
+              <button className="btn btn-primary mt-3 mb-3" type="submit">Submit</button>
+              <Link to="/register" className="btn btn-link mt-3 mb-3">Register</Link>
             </div>
             {isUnsuccessful ? <p className="text-danger">Email or password not valid</p> : ''}
           </form>

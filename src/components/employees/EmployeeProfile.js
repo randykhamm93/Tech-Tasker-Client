@@ -46,11 +46,11 @@ export const EmployeeProfile = () => {
 
   return (
     <>
-      <div className="d-flex align-items-center justify-content-center" style={{ minHeight: '75vh' }}>
-        <section className="work-order p-5 bg-white shadow-lg rounded-lg col-md-4">
+      <div className="position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
+        <section className="work-order p-5 bg-light" style={{width: "500px"}}>
           <h1 className="text-xl-center font-semibold mb-5">{employee.full_name}</h1>
-          <div className="text-center mb-4"> {/* Center-align text within the div */}
-            <p><strong>Role:</strong> {employee.role}</p>
+          <div className="mb-4 text-center"> {/* Center-align text within the div */}
+            <p><strong>Job Title:</strong> {employee.role}</p>
             <p><strong>Specialty:</strong> {employee.specialty}</p>
             <p><strong>Shift:</strong> {employee.shift}</p>
             <p><strong>Phone Number:</strong> {employee.phone_number}</p>
@@ -58,8 +58,8 @@ export const EmployeeProfile = () => {
             <p><strong>Start Date:</strong> {employee.start_date}</p>
           </div>
           {isSupervisor && (
-            <div className="text-center"> {/* Center-align the button */}
-              <button onClick={handleDelete} className="btn btn-danger">Delete Employee</button>
+            <div className="text-center"> 
+              <button onClick={handleDelete} className="btn btn-danger mt-2">Delete Employee</button>
             </div>
           )}
         </section>

@@ -54,10 +54,11 @@ export const EditWorkOrderForm = () => {
   }, [workOrderId]);
 
   return (
-    <form className="workOrderForm">
-      <h2 className="workOrderForm__title">Edit Work Order</h2>
+    <div className="container mb-5 bg-light" style={{ width: '800px' }}>
+    <form className="form--login text-dark m-3">
+      <h2 className="h1 mt-3 font-weight-normal text-dark text-center pt-3">Edit Work Order</h2>
       <fieldset>
-        <div className="form-group">
+        <div className="form-group mb-3">
           <label htmlFor="title">Title: </label>
           <input
             type="text"
@@ -72,7 +73,7 @@ export const EditWorkOrderForm = () => {
         </div>
       </fieldset>
       <fieldset>
-        <div className="form-group">
+        <div className="form-group mb-3">
           <label htmlFor="department">Department: </label>
           <select
             name="department"
@@ -92,7 +93,7 @@ export const EditWorkOrderForm = () => {
         </div>
       </fieldset>
       <fieldset>
-        <div className="form-group">
+        <div className="form-group mb-3">
           <label htmlFor="category">Category: </label>
           <select
             name="category"
@@ -112,7 +113,7 @@ export const EditWorkOrderForm = () => {
         </div>
       </fieldset>
       <fieldset>
-        <div className="form-group">
+        <div className="form-group mb-3">
           <label htmlFor="due_date">Due Date: </label>
           <input
             type="date"
@@ -132,7 +133,7 @@ export const EditWorkOrderForm = () => {
           name="assigned_to"
           required
           multiple
-          className="form-control"
+          className="form-control mb-3"
           value={selectedEmployees}
           onChange={(evt) => {
             const selectedOptions = Array.from(evt.target.selectedOptions, (option) =>
@@ -150,12 +151,12 @@ export const EditWorkOrderForm = () => {
         </select>
       </fieldset>
       <fieldset>
-        <div className="form-group">
+        <div className="form-group mb-3">
           <label htmlFor="critical">Emergency:</label>
           <input
             type="checkbox"
             name="critical"
-            className="form-check-input"
+            className="m-1"
             checked={critical}
             onChange={(evt) => {
               setCritical(evt.target.checked);
@@ -164,7 +165,7 @@ export const EditWorkOrderForm = () => {
         </div>
       </fieldset>
       <fieldset>
-        <div className="form-group">
+        <div className="form-group mb-3">
           <label>Status:</label>
           {STATUS_CHOICES.map((statusOption) => (
             <div key={statusOption.value}>
@@ -183,12 +184,12 @@ export const EditWorkOrderForm = () => {
         </div>
       </fieldset>
       <fieldset>
-        <div className="form-group">
+        <div className="form-group mb-3">
           <label htmlFor="description">Description: </label>
           <textarea
             name="description"
             required
-            className="form-control"
+            className="form-control" style={{minHeight: "100px"}}
             value={workOrder.description}
             onChange={(evt) => {
               setWorkOrder({ ...workOrder, description: evt.target.value });
@@ -196,6 +197,7 @@ export const EditWorkOrderForm = () => {
           />
         </div>
       </fieldset>
+      <div className="text-center">
       <button
         type="submit"
         onClick={evt => {
@@ -214,8 +216,10 @@ export const EditWorkOrderForm = () => {
 
           editWorkOrder(workOrderId, work_order)
             .then(() => navigate(`/work_orders/${workOrderId}`));
-        }}className='btn-success'
+        }}className='btn btn-primary m-4'
       >Save Work Order</button>
+      </div>
     </form>
+    </div>
   );
 };

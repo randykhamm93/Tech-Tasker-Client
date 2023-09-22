@@ -13,7 +13,7 @@ export const WorkOrderDetails = () => {
 
   useEffect(() => {
     const userEmployeeId = localStorage.getItem("userEmployeeId");
-    
+
     getWorkOrder(workOrderId)
       .then((workOrderData) => {
         setWorkOrder(workOrderData);
@@ -22,7 +22,7 @@ export const WorkOrderDetails = () => {
     if (userEmployeeId) {
       getEmployee(userEmployeeId)
         .then((employeeData) => {
-          setIsSupervisor(employeeData.is_supervisor); 
+          setIsSupervisor(employeeData.is_supervisor);
         })
         .catch((error) => {
           console.error("Error fetching employee data:", error);
@@ -53,7 +53,7 @@ export const WorkOrderDetails = () => {
         });
     }
   };
-  
+
   const handleMarkCompleted = () => {
     if (window.confirm('Are you sure you want to mark this work order as Completed?')) {
       editWorkOrderStatus(workOrder.id, 'Completed')
@@ -72,7 +72,7 @@ export const WorkOrderDetails = () => {
         });
     }
   };
-  
+
   const handleDelete = () => {
     const userConfirmed = window.confirm('Are you sure you want to delete this work order?');
     if (userConfirmed) {
@@ -87,48 +87,52 @@ export const WorkOrderDetails = () => {
   };
 
   return (
-  <>
-    <section className="work-order p-4 bg-white shadow-lg rounded-lg m-5">
-      <h2 className="text-xl font-semibold mb-4 text-center">{workOrder.title}</h2>
-      <div className="flex justify-between mb-4">
-        <div className="text-sm text-gray-600">
-          <p>Category: {workOrder?.category?.name}</p>
-          <p>Department: {workOrder?.department?.name}</p>
-          <p>Emergency: {workOrder.critical ? "Yes" : "No"}</p>
-          <p>Status: {workOrder.status}</p>
-          <p>Created By: {createdByUser?.first_name} {createdByUser?.last_name}</p>
-        </div>
-          <p>Assigned To:</p>
-          <ul>
-            {assignedToUsers.map((assignedUser, index) => (
-              <li key={`${assignedUser.id}-${index}`}>{assignedUser.full_name}</li>
-            ))}
-          </ul>
-      </div>
-      <div>
-        <p className="text-sm text-gray-600">Description:</p>
-        <p className="text-gray-700 mb-2">{workOrder.description}</p>
-      </div>
-      <div>
-      {isSupervisor ? (
-        <div>
-          <button onClick={editWorkOrder} className='btn btn-primary mt-3 mb-3'>Edit Work Order</button>
-          <br></br>
-          <button onClick={handleDelete}className='btn btn-danger '>Delete Work Order</button>
-        </div>
-      ) : (
-        <div>
-          <div>
-            <button onClick={handleMarkInProgress} className='btn btn-primary mt-3 mb-3'>Mark In Progress</button>
-          </div>  
-          <div>
-            <button onClick={handleMarkCompleted} className='btn btn-success'>Mark Completed</button>
+    <>
+      <div className="position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center" >
+        <section className="work-order p-5 bg-light" style={{width: "800px"}}>
+          <h1 className="text-xl-center font-semibold mb-5 text-center">{workOrder.title}</h1>
+          <div className="mb-4">
+            <p className="mb-4"><strong>Category:</strong> {workOrder?.category?.name}</p>
+            <p className="mb-4"><strong>Department:</strong> {workOrder?.department?.name}</p>
+            <p className="mb-4"><strong>Emergency:</strong> {workOrder.critical ? "Yes" : "No"}</p>
+            <p className="mb-4"><strong>Status:</strong> {workOrder.status}</p>
+            <p className="mb-4"><strong>Created By:</strong> {createdByUser?.first_name} {createdByUser?.last_name}</p>
           </div>
-        </div>
-      )}
+          <div className="mb-4">
+            <p><strong>Assigned To:</strong></p>
+            <ul>
+              {assignedToUsers.map((assignedUser, index) => (
+                <li key={`${assignedUser.id}-${index}`}>{assignedUser.full_name}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p><strong>Description:</strong></p>
+            <p className="mb-2">{workOrder.description}</p>
+          </div>
+          <div className="d-flex justify-content-center">
+            {isSupervisor ? (
+              <div className="text-center">
+                <div>
+                  <button onClick={editWorkOrder} className='btn btn-primary mt-3 mb-3'>Edit Work Order</button>
+                </div>
+                <div>
+                  <button onClick={handleDelete} className='btn btn-danger'>Delete Work Order</button>
+                </div>
+              </div>
+            ) : (
+              <div className="text-center">
+                <div>
+                  <button onClick={handleMarkInProgress} className='btn btn-primary mt-3 mb-3'>Mark In Progress</button>
+                </div>
+                <div>
+                  <button onClick={handleMarkCompleted} className='btn btn-success'>Mark Completed</button>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
       </div>
-    </section>
-    
-  </>
+    </>
   );
 };

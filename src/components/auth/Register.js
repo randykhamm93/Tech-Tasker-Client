@@ -49,37 +49,37 @@ export const Register = () => {
   };
 
   return (
-  <main className="container mb-5 bg-white">
-    <dialog className="dialog dialog--password" ref={passwordDialog}>
-      <div>Passwords do not match</div>
-      <button className="btn btn-secondary button--close" onClick={(e) => passwordDialog.current.close()}>Close</button>
-    </dialog>
-    <form className="form--login" onSubmit={handleRegister}>
-      <h1 className="h1 mt-3 font-weight-normal text-dark text-center">Register an account</h1>
-      <div className="form-group">
-        <label htmlFor="email">Email</label>
-        <input ref={email} type="email" name="email" className="form-control mb-3" id="email" placeholder="Email" required autoFocus />
-      </div>
-      <div className="form-group">
-        <label htmlFor="phoneNumber">Phone Number</label>
-        <input ref={phoneNumber} type="tel" name="phoneNumber" className="form-control mb-3" id="phoneNumber" placeholder="Phone number" required />
-      </div>
-      <div className="form-group">
-        <label htmlFor="firstName">First Name</label>
-        <input ref={firstName} type="text" name="firstName" className="form-control mb-3" id="firstName" placeholder="First name" required />
-      </div>
-      <div className="form-group">
-        <label htmlFor="lastName">Last Name</label>
-        <input ref={lastName} type="text" name="lastName" className="form-control mb-3" id="lastName" placeholder="Last name" required />
-      </div>
-      <div className="form-group">
-        <label htmlFor="password">Password</label>
-        <input ref={password} type="password" name="password" className="form-control mb-3" id="password" placeholder="Password" required />
-      </div>
-      <div className="form-group">
-        <label htmlFor="verifyPassword">Verify Password</label>
-        <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control mb-3" id="verifyPassword" placeholder="Verify password" required />
-      </div>
+    <div className="container mb-5 bg-light" style={{ width: '800px' }}>
+      <dialog className="dialog dialog--password" ref={passwordDialog}>
+        <div>Passwords do not match</div>
+        <button className="btn btn-secondary button--close" onClick={(e) => passwordDialog.current.close()}>Close</button>
+      </dialog>
+      <form className="form--login text-dark m-3" onSubmit={handleRegister}>
+        <h1 className="h1 mt-3 font-weight-normal text-dark text-center pt-3">Register an account</h1>
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input ref={email} type="email" name="email" className="form-control mb-3" id="email" placeholder="Email" required autoFocus />
+        </div>
+        <div className="form-group">
+          <label htmlFor="phoneNumber">Phone Number</label>
+          <input ref={phoneNumber} type="tel" name="phoneNumber" className="form-control mb-3" id="phoneNumber" placeholder="Phone number" required />
+        </div>
+        <div className="form-group">
+          <label htmlFor="firstName">First Name</label>
+          <input ref={firstName} type="text" name="firstName" className="form-control mb-3" id="firstName" placeholder="First name" required />
+        </div>
+        <div className="form-group">
+          <label htmlFor="lastName">Last Name</label>
+          <input ref={lastName} type="text" name="lastName" className="form-control mb-3" id="lastName" placeholder="Last name" required />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input ref={password} type="password" name="password" className="form-control mb-3" id="password" placeholder="Password" required />
+        </div>
+        <div className="form-group">
+          <label htmlFor="verifyPassword">Verify Password</label>
+          <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control mb-3" id="verifyPassword" placeholder="Verify password" required />
+        </div>
         <fieldset>
           <label htmlFor="start_date">Start Date</label>
           <input ref={start_date} type="date" name="start_date" className="form-control mb-3" required />
@@ -117,13 +117,13 @@ export const Register = () => {
             <option value="supervisor">Supervisor</option>
           </select>
         </fieldset>
-        <div className="form-group" style={{ textAlign: "left" }}>
-        <button className="btn btn-primary btn-1 btn-sep icon-send mt-4" type="submit">Register</button>
+        <div className="form-group" style={{ textAlign: "center" }}>
+          <button className="btn btn-primary btn-1 btn-sep icon-send mt-4 mb-2" type="submit">Register</button>
+        </div>
+      <div className="form-group link--register m-3" style={{ textAlign: "center" }}>
+        Already registered? <Link to="/login">Login</Link>
       </div>
-    </form>
-    <section className="link--register" style={{ textAlign: "left" }}> 
-      Already registered? <Link to="/login">Login</Link>
-    </section>
-  </main>
-);
+      </form>
+    </div>
+  );
 };

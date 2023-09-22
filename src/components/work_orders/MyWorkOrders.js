@@ -15,38 +15,45 @@ export const MyWorkOrders = () => {
       });
   }, []);
 
+  const getButtonClass = (status) => {
+    switch (status) {
+      case 'Not Started':
+        return 'btn btn-danger';
+      case 'In Progress':
+        return 'btn btn-primary';
+      case 'Completed':
+        return 'btn btn-success';
+      default:
+        return 'btn btn-secondary';
+    }
+  };
+
   return (
-    <div className="page-container">
-      <h1 className="page-header">My Work Orders</h1>
-      <div className="work_order-container">
-        <div className="left-side">
-          <table className="min-w-full">
+    <div className="container position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
+      <div className="list-group">
+        <div className="bg-light container">
+          <h1 className="page-header text-dark text-center mt-3 mb-3" style={{width: '1000px'}}>My Work Orders</h1>
+          <table className="table table-striped table-bordered text-center">
             <thead>
               <tr>
-                <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                  Title
-                </th>
-                <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                  Due Date
-                </th>
-                <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                  Status
-                </th>
+                <th>Title</th>
+                <th>Due Date</th>
+                <th>Status</th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody>
               {workOrders.map((workOrder) => (
                 <tr key={workOrder.work_order.id}>
-                  <td className="px-6 py-4 whitespace-no-wrap">
-                    <Link to={`/work_orders/${workOrder.work_order.id}`}>
+                  <td>
+                    <Link to={`/work_orders/${workOrder.work_order.id}`} className="text-decoration-none text-primary">
                       {workOrder.work_order.title}
                     </Link>
                   </td>
-                  <td className="px-6 py-4 whitespace-no-wrap">
-                    {workOrder.work_order.due_date}
-                  </td>
-                  <td className="px-6 py-4 whitespace-no-wrap">
-                    {workOrder.work_order.status}
+                  <td>{workOrder.work_order.due_date}</td>
+                  <td>
+                    <span className={`btn btn-sm ${getButtonClass(workOrder.work_order.status)}`}>
+                      {workOrder.work_order.status}
+                    </span>
                   </td>
                 </tr>
               ))}
@@ -56,4 +63,5 @@ export const MyWorkOrders = () => {
       </div>
     </div>
   );
+  
 };
