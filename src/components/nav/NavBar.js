@@ -35,11 +35,11 @@ export const NavBar = ({ token, setToken }) => {
 
     return (
     <div className="navbar-container"> 
-        <nav className="navbar nav-expand-lg bg-light fixed-top nav">
+        <nav className="navbar nav-expand-lg bg-info fixed-top shadow nav">
           <div className="container m-3">
             <div className="navbar-start">
             <button
-              className="navbar-toggler"
+              className="navbar-toggler bg-light border-info"
               type="button"
               data-toggle="collapse"
               data-target="#navNav"
@@ -49,7 +49,7 @@ export const NavBar = ({ token, setToken }) => {
             >
             <span className="navbar-toggler-icon"></span>
             </button>
-            <Link to="/" className="navbar-brand text- text-info m-3">
+            <Link to="/work_orders" className="navbar-brand text-light m-3">
               TechTasker
             </Link>
             </div>
@@ -59,23 +59,23 @@ export const NavBar = ({ token, setToken }) => {
               <ul className="navbar-nav">
                 {token ? (
                   <>
-                    <li className="nav-item">
-                      <Link to="/work_orders" className="nav-link active">
+                    <li className="nav-item mt-3">
+                      <Link to="/work_orders" className="nav-link text-light">
                         Work Orders
                       </Link>
                     </li>
-                    <li className="nav-item">
-                      <Link to="/my_profile/:profileId" className="nav-link active">
+                    <li className="nav-item mt-3">
+                      <Link to="/my_profile/:profileId" className="nav-link text-light">
                         My Profile
                       </Link>
                     </li>
-                    <li className="nav-item">
-                      <Link to="/employees" className="nav-link active">
+                    <li className="nav-item mt-3">
+                      <Link to="/employees" className="nav-link text-light">
                         Employees
                       </Link>
                     </li>
-                    <li className="nav-item">
-                      <Link to="/login" onClick={handleLogout} className="nav-link active">
+                    <li className="nav-item mt-3">
+                      <Link to="/login" onClick={handleLogout} className="nav-link text-light">
                         Logout
                       </Link>
                     </li>

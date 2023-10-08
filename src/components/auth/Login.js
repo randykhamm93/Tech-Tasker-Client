@@ -1,6 +1,7 @@
 import { useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { loginUser } from "../../managers/AuthManager"
+import "./login.css"
 
 export const Login = ({ setToken }) => {
   const email = useRef()
@@ -41,10 +42,10 @@ export const Login = ({ setToken }) => {
   return (
     <div className="position-absolute top-50 start-50 translate-middle
     d-flex align-items-center justify-content-center">
-      <div className="container bg-light border border" style={{ width: '800px', maxHeight: '500px' }}>
+      <div className="container border bg-light shadow" style={{ width: '800px', maxHeight: '500px' }}>
         <section className="row justify-content-center">
           <form className="col-md-8" onSubmit={handleLogin}>
-            <h1 className="text-center justify-content-center mb-5 mt-3">Welcome To TechTasker</h1>
+            <h1 className="text-center justify-content-center mb-5 mt-5">Welcome To TechTasker</h1>
             <h4 className=" subtitle mb-4">Please sign in</h4>
             <div className="mb-3">
               <label htmlFor="email" className=" form-label">Email</label>

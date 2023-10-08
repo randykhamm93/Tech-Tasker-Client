@@ -76,9 +76,9 @@ export const CreateWorkOrderForm = () => {
 };
 
   return (
-    <div className="container mb-5 bg-light" style={{ width: '800px' }}>
-    <form className="form--login text-dark m-3">
-      <h2 className="h1 mt-3 font-weight-normal text-dark text-center pt-3">Create New Work Order</h2>
+    <div className="container mb-5 bg-light border shadow" style={{ width: '800px' }}>
+    <form className="form--login text-dark m-5">
+      <h2 className="h1 m-3 font-weight-normal text-dark text-center p-4">Create Work Order</h2>
       <fieldset>
         <div className="form-group mb-3">
           <label htmlFor="title">Title: </label>

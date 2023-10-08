@@ -49,13 +49,13 @@ export const Register = () => {
   };
 
   return (
-    <div className="container mb-5 bg-light" style={{ width: '800px' }}>
+    <div className="container mb-5 bg-light border shadow" style={{ width: '800px' }}>
       <dialog className="dialog dialog--password" ref={passwordDialog}>
         <div>Passwords do not match</div>
         <button className="btn btn-secondary button--close" onClick={(e) => passwordDialog.current.close()}>Close</button>
       </dialog>
-      <form className="form--login text-dark m-3" onSubmit={handleRegister}>
-        <h1 className="h1 mt-3 font-weight-normal text-dark text-center pt-3">Register an account</h1>
+      <form className="form--login text-dark m-5" onSubmit={handleRegister}>
+        <h1 className="h1 mt-3 font-weight-normal text-dark text-center p-4">Register an account</h1>
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input ref={email} type="email" name="email" className="form-control mb-3" id="email" placeholder="Email" required autoFocus />

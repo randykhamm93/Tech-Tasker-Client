@@ -89,7 +89,7 @@ export const WorkOrderDetails = () => {
   return (
     <>
       <div className="position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center" >
-        <section className="work-order p-5 bg-light" style={{width: "800px"}}>
+        <section className="work-order p-5 bg-light border shadow" style={{width: "800px"}}>
           <h1 className="text-xl-center font-semibold mb-5 text-center">{workOrder.title}</h1>
           <div className="mb-4">
             <p className="mb-4"><strong>Category:</strong> {workOrder?.category?.name}</p>

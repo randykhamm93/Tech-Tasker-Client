@@ -47,7 +47,7 @@ export const EmployeeProfile = () => {
   return (
     <>
       <div className="position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
-        <section className="work-order p-5 bg-light" style={{width: "500px"}}>
+        <section className="work-order p-5 bg-light border shadow" style={{width: "500px"}}>
           <h1 className="text-xl-center font-semibold mb-5">{employee.full_name}</h1>
           <div className="mb-4 text-center"> {/* Center-align text within the div */}
             <p><strong>Job Title:</strong> {employee.role}</p>

@@ -8,10 +8,10 @@ export const EditMyProfile = () => {
   const [myProfile, setMyProfile] = useState({});
   const [role, setRole] = useState({})
   const [shift, setShift] = useState([]);
-  const [hourlyWage, setHourlyWage] = useState([]);
+  const [hourlyWage, setHourlyWage] = useState('');
   const [specialty, setSpecialty] = useState([]);
   const [email, setEmail] = useState([]);
-  const [phoneNumber, setPhoneNumber] = useState({});
+  const [phoneNumber, setPhoneNumber] = useState('');
 
 
   useEffect(() => {
@@ -29,32 +29,29 @@ export const EditMyProfile = () => {
 
   const handleEditProfile = async (event) => {
     event.preventDefault();
-
+  
     try {
       // Create an object with the updated data
       const updatedEmployeeData = {
         email: myProfile.email,
-        phoneNumber: myProfile.phone_number,
-        role: role, // Use the state variable directly
+        phone_number: phoneNumber, // Use phoneNumber state
+        role: role,
         specialty: specialty,
-        hourlyWage: hourlyWage,
+        hourly_wage: hourlyWage, // Use hourlyWage state
         shift: shift,
-        // Add other fields as needed
       };
-
+  
       // Make an API request to update the employee's profile
-      // Replace 'updateEmployee' with your actual API function
       await editEmployee(employeeId, updatedEmployeeData);
-
-      // After successful update, navigate back to the profile page
+  
+      // After a successful update, navigate back to the profile page
       navigate(`/my_profile/${employeeId}`);
     } catch (error) {
       console.error("Error updating employee profile:", error);
       // Handle errors or display an error message to the user
     }
   };
-
-
+  
   return (
     <div className="container mb-5 bg-light" style={{ width: '800px' }}>
       <form className="form--login text-dark m-3" onSubmit={handleEditProfile}>
@@ -76,22 +73,26 @@ export const EditMyProfile = () => {
         <div className="form-group">
           <label htmlFor="phoneNumber">Phone Number</label>
           <input
-            type="tel"
-            name="phoneNumber"
-            value={myProfile.phone_number || ''}
-            onChange={(e) => setMyProfile({ ...myProfile, phone_number: e.target.value })}
-            className="form-control mb-3"
-            id="phoneNumber"
-            placeholder="Phone number"
-            required
-          />
+  type="tel"
+  name="phoneNumber"
+  value={phoneNumber}
+  onChange={(e) => {
+    setPhoneNumber(e.target.value);
+    console.log("Phone Number State:", e.target.value);
+  }}
+  className="form-control mb-3"
+  id="phoneNumber"
+  placeholder="Phone number"
+  required
+/>
+
         </div>
         <fieldset>
           <label htmlFor="role">Job Title</label>
           <select
             name="role"
-            value={role} // Use the state variable directly
-            onChange={(e) => setRole(e.target.value)} // Update the state variable on change
+            value={role} 
+            onChange={(e) => setRole(e.target.value)} 
             className="form-control mb-3"
             required
           >
@@ -107,8 +108,8 @@ export const EditMyProfile = () => {
           <input
             type="text"
             name="specialty"
-            value={specialty} // Use the state variable directly
-            onChange={(e) => setSpecialty(e.target.value)} // Update the state variable on change
+            value={specialty} 
+            onChange={(e) => setSpecialty(e.target.value)} 
             className="form-control mb-3"
             placeholder="Specialty"
             required
@@ -118,8 +119,8 @@ export const EditMyProfile = () => {
             <input
               type="number"
               name="hourlyWage"
-              value={hourlyWage} // Use the state variable directly
-              onChange={(e) => setHourlyWage(e.target.value)} // Update the state variable on change
+              value={hourlyWage} 
+              onChange={(e) => setHourlyWage(e.target.value)} 
               className="form-control mb-3"
               placeholder="Hourly Wage"
               required
@@ -129,8 +130,8 @@ export const EditMyProfile = () => {
             <label htmlFor="shift">Shift</label>
             <select
               name="shift"
-              value={shift} // Use the state variable directly
-              onChange={(e) => setShift(e.target.value)} // Update the state variable on change
+              value={shift} 
+              onChange={(e) => setShift(e.target.value)} 
               className="form-control mb-3"
               required
             >
@@ -148,5 +149,4 @@ export const EditMyProfile = () => {
       </form>
     </div>
   );
-
 };

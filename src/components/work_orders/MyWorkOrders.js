@@ -30,10 +30,9 @@ export const MyWorkOrders = () => {
 
   return (
     <div className="container position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
-      <div className="list-group">
-        <div className="bg-light container">
-          <h1 className="page-header text-dark text-center mt-3 mb-3" style={{width: '1000px'}}>My Work Orders</h1>
-          <table className="table table-striped table-bordered text-center">
+      <div className="list-group" style={{width: '1200px'}}>
+          <h1 className="page-header text-dark text-center mt-5 mb-5">My Work Orders</h1>
+          <table className="table table-striped table-bordered shadow text-center">
             <thead>
               <tr>
                 <th>Title</th>
@@ -61,7 +60,5 @@ export const MyWorkOrders = () => {
           </table>
         </div>
       </div>
-    </div>
   );
-  
 };
