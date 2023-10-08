@@ -29,7 +29,7 @@ export const EditMyProfile = () => {
 
   const handleEditProfile = async (event) => {
     event.preventDefault();
-  
+
     try {
       // Create an object with the updated data
       const updatedEmployeeData = {
@@ -40,10 +40,10 @@ export const EditMyProfile = () => {
         hourly_wage: hourlyWage, // Use hourlyWage state
         shift: shift,
       };
-  
+
       // Make an API request to update the employee's profile
       await editEmployee(employeeId, updatedEmployeeData);
-  
+
       // After a successful update, navigate back to the profile page
       navigate(`/my_profile/${employeeId}`);
     } catch (error) {
@@ -51,7 +51,7 @@ export const EditMyProfile = () => {
       // Handle errors or display an error message to the user
     }
   };
-  
+
   return (
     <div className="container mb-5 bg-light" style={{ width: '800px' }}>
       <form className="form--login text-dark m-3" onSubmit={handleEditProfile}>
@@ -73,26 +73,22 @@ export const EditMyProfile = () => {
         <div className="form-group">
           <label htmlFor="phoneNumber">Phone Number</label>
           <input
-  type="tel"
-  name="phoneNumber"
-  value={phoneNumber}
-  onChange={(e) => {
-    setPhoneNumber(e.target.value);
-    console.log("Phone Number State:", e.target.value);
-  }}
-  className="form-control mb-3"
-  id="phoneNumber"
-  placeholder="Phone number"
-  required
-/>
-
+            type="tel"
+            name="phoneNumber"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            className="form-control mb-3"
+            id="phoneNumber"
+            placeholder="Phone number"
+            required
+          />
         </div>
         <fieldset>
           <label htmlFor="role">Job Title</label>
           <select
             name="role"
-            value={role} 
-            onChange={(e) => setRole(e.target.value)} 
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
             className="form-control mb-3"
             required
           >
@@ -104,47 +100,47 @@ export const EditMyProfile = () => {
             <option value="Supervisor">Supervisor</option>
           </select>
         </fieldset>
-          <label htmlFor="specialty">Specialty</label>
+        <label htmlFor="specialty">Specialty</label>
+        <input
+          type="text"
+          name="specialty"
+          value={specialty}
+          onChange={(e) => setSpecialty(e.target.value)}
+          className="form-control mb-3"
+          placeholder="Specialty"
+          required
+        />
+        <fieldset>
+          <label htmlFor="hourlyWage">Hourly Wage</label>
           <input
-            type="text"
-            name="specialty"
-            value={specialty} 
-            onChange={(e) => setSpecialty(e.target.value)} 
+            type="number"
+            name="hourlyWage"
+            value={hourlyWage}
+            onChange={(e) => setHourlyWage(e.target.value)}
             className="form-control mb-3"
-            placeholder="Specialty"
+            placeholder="Hourly Wage"
             required
           />
-          <fieldset>
-            <label htmlFor="hourlyWage">Hourly Wage</label>
-            <input
-              type="number"
-              name="hourlyWage"
-              value={hourlyWage} 
-              onChange={(e) => setHourlyWage(e.target.value)} 
-              className="form-control mb-3"
-              placeholder="Hourly Wage"
-              required
-            />
-          </fieldset>
-          <fieldset>
-            <label htmlFor="shift">Shift</label>
-            <select
-              name="shift"
-              value={shift} 
-              onChange={(e) => setShift(e.target.value)} 
-              className="form-control mb-3"
-              required
-            >
-              <option value="">Select Shift</option>
-              <option value="First">First</option>
-              <option value="Second">Second</option>
-              <option value="Third">Third</option>
-            </select>
-          </fieldset>
+        </fieldset>
+        <fieldset>
+          <label htmlFor="shift">Shift</label>
+          <select
+            name="shift"
+            value={shift}
+            onChange={(e) => setShift(e.target.value)}
+            className="form-control mb-3"
+            required
+          >
+            <option value="">Select Shift</option>
+            <option value="First">First</option>
+            <option value="Second">Second</option>
+            <option value="Third">Third</option>
+          </select>
+        </fieldset>
 
-          <div className="form-group" style={{ textAlign: "center" }}>
-            <button className="btn btn-primary btn-1 btn-sep icon-send mt-4 mb-4" type="submit">Save Profile</button>
-          </div>
+        <div className="form-group" style={{ textAlign: "center" }}>
+          <button className="btn btn-primary btn-1 btn-sep icon-send mt-4 mb-4" type="submit">Save Profile</button>
+        </div>
 
       </form>
     </div>
