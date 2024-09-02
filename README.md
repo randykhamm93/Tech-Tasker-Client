@@ -1,3 +1,8 @@
+# Tech-Tasker
+
+## Description: 
+This project is a full-stack web application built with react/django. Its purpose is for creating, editing, updating, and deleting work orders and employees in the system.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
